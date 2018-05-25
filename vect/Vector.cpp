@@ -1,23 +1,23 @@
 #include "stdafx.h"
-#include "Vect2D.h"
+#include "Vector.h"
 #include <string>
 #include <iostream>
 #include <cmath>
 
 
 
-Vect2D::Vect2D()
+Vector::Vector()
 {
 
 }
 
 
-Vect2D::~Vect2D()
+Vector::~Vector()
 {
 
 }
 
-float Vect2D::radius()
+float Vector::radius()
 {
 	float rad = 0;
 	for (int i = 0; i < this->size(); i++)
@@ -27,7 +27,7 @@ float Vect2D::radius()
 
 }
 
-void Vect2D::print()
+void Vector::print()
 {
 	// Print the vector in this format: [a, b, c]
 	std::string out = "[";
@@ -42,37 +42,37 @@ void Vect2D::print()
 	std::cout << out << std::endl;
 }
 
-unsigned int Vect2D::size()
+unsigned int Vector::size()
 {
 	return sizeof(this->vct);
 }
 
-void Vect2D::set(Vect2D &A)
+void Vector::set(Vector &A)
 {
 	for (int i = 0; i < A.size(); i++)
 		this->vct[i] = A[i];
 }
 
-void Vect2D::setIndex(unsigned int index, float value)
+void Vector::setIndex(unsigned int index, float value)
 {
 	this->vct[index] = value;
 }
 
-float Vect2D::getIndex(unsigned int index)
+float Vector::getIndex(unsigned int index)
 {
 	return this->vct[index];
 }
 
-void Vect2D::operator=(Vect2D &A)
+void Vector::operator=(Vector &A)
 {
 	// this = A
 	this->set(A);
 }
 
-Vect2D operator+(Vect2D &A, Vect2D &B)
+Vector operator+(Vector &A, Vector &B)
 {
 	// Vector addition
-	Vect2D C;
+	Vector C;
 	if (A.size() != B.size())
 		return C;
 	
@@ -82,7 +82,7 @@ Vect2D operator+(Vect2D &A, Vect2D &B)
 	return C;
 }
 
-Vect2D operator-(Vect2D &A, Vect2D &B)
+Vector operator-(Vector &A, Vector &B)
 {
 	// Vector subtraction
 	for (int i = 0; i < A.size(); i++)
@@ -91,7 +91,7 @@ Vect2D operator-(Vect2D &A, Vect2D &B)
 	return (A + B);
 }
 
-float operator*(Vect2D &A, Vect2D &B)
+float operator*(Vector &A, Vector &B)
 {
 	// Scalar product
 	float scalar;
@@ -104,30 +104,30 @@ float operator*(Vect2D &A, Vect2D &B)
 	return scalar;
 }
 
-Vect2D operator%(Vect2D &A, Vect2D &B)
+Vector operator%(Vector &A, Vector &B)
 {
 	// Cross product
-	return Vect2D();
+	return Vector();
 }
 
-Vect2D operator*(float num, Vect2D &A)
+Vector operator*(float num, Vector &A)
 {
 	// Scalar * vector
-	Vect2D C;
+	Vector C;
 
 	for (int i = 0; i < A.size(); i++)
 		C.setIndex(i, num * A[i]);
 
-	return Vect2D();
+	return Vector();
 }
 
-Vect2D operator/(float num, Vect2D &A)
+Vector operator/(float num, Vector &A)
 {
 	// Scalar / vector
 	return (1/num) * A;
 }
 
-float Vect2D::operator[](unsigned int index)
+float Vector::operator[](unsigned int index)
 {
 	// Get at index
 	return this->vct[index];
